@@ -1,0 +1,34 @@
+.jumbotron {
+  margin-bottom: 0;
+}
+
+#movieCarousel {
+  text-align: center;
+}
+
+#movieCarousel img {
+  height: 500px;
+  display: inline-block;
+}
+
+.movie-list {
+  margin: 50px auto;
+}
+
+.movie-list .modal img {
+  width: 100%;
+  max-height: none;
+}
+
+.movie {
+  min-height: 400px;
+}
+
+.movie img {
+  max-height: 200px;
+  width: auto;
+}
+
+.movie .stars {
+  margin: 0 0 15px;
+}

@@ -1,0 +1,125 @@
+<!doctype html>
+
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <title>CWI Test | Movie Catalog</title>
+    <meta name="description" content="Landing Page developed for testing purposes.">
+    <meta name="author" content="João Sieben">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css?v=1.0">
+
+    <script src="/node_modules/angular/angular.js"></script>
+  </head>
+
+    <body ng-app="movieList" ng-controller="MainController">
+
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">CWI Test | Movie Catalog</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="jumbotron">
+        <div class="container">
+          <h1>{{ title }}</h1>
+        </div>
+      </div>
+
+      <div class="container">
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="text" placeholder="Search Movies" class="form-control" ng-model="query">
+            </div>
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+
+      <div class="container main">
+
+        <div id="movieCarousel" class="carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#movieCarousel" data-slide-to="0" class=""></li>
+            <li data-target="#movieCarousel" data-slide-to="1" class=""></li>
+            <li data-target="#movieCarousel" data-slide-to="2" class="active"></li>
+          </ol>
+          <div class="carousel-inner" role="listbox">
+            <div class="item" ng-class="{active:$first}" ng-repeat="movie in movies.carrossel">
+              <img ng-src="{{ movie.url }}" alt="Movie Image">
+            </div>
+          </div>
+          <a class="left carousel-control" href="#movieCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#movieCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="container movie-list">
+        <div class="row">
+
+          <div class="col-md-4 movie" ng-repeat="movie in movies.catalogo | filter:{titulo:query, descricao:query}">
+            <img ng-src="{{ movie.url }}" />
+            <h2>{{ movie.titulo }}</h2>
+
+            <p>{{ movie.descricao }}</p>
+
+            <div class="stars" >
+              <span class="glyphicon glyphicon-star" aria-hidden="true" ng-repeat="star in getRating(movie.estrelas) track by $index"></span>
+            </div>
+
+            <a class="btn btn-default" href="#" role="button" data-toggle="modal" data-target="#movieModal-{{ $index }}">See more »</a>
+
+            <!-- Modal -->
+            <div class="modal fade" id="movieModal-{{ $index }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{ movie.titulo }}</h4>
+                  </div>
+                  <div class="modal-body">
+
+                    <img ng-src="{{ movie.url }}" alt="Movie Image" />
+
+                    <h4>Descrição</h4>
+                    <p>{{ movie.descricao }}</p>
+
+                    <h4>Classificação</h4>
+                    <div class="stars" >
+                      <span class="glyphicon glyphicon-star" aria-hidden="true" ng-repeat="star in getRating(movie.estrelas) track by $index"></span>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!-- Modules -->
+    <script src="js/app.js"></script>
+
+    <!-- Controllers -->
+    <script src="js/controllers/MainController.js"></script>
+
+    <!-- Services -->
+		<script src="js/services/movies.js"></script>
+  </body>
+</html>
