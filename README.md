@@ -1,7 +1,7 @@
-# CWI Test | João A. P. Sieben.
+# Angular test landing page.
 
 This Landing page was developed as a test only. It uses:
- * [Yarn](https://yarnpkg.com/pt-BR/), as package manager, and
+ * [Yarn](https://yarnpkg.com/), as package manager, and
  * [Angular](https://angular.io/), to fetch data and mount the HTML elements dynamically.
 
 To run the application, simply access the root folder in your browser. The page is mounted with the information from a remote endpoint, and should be listing a few movies, in a catalog format.
